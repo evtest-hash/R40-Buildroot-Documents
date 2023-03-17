@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Hackintosh" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>2. 硬件相关知识 - 合信HMI</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "2. \u786c\u4ef6\u76f8\u5173\u77e5\u8bc6";
+        var mkdocs_page_input_path = "chap2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> 合信HMI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">主页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap1.html">1. 介绍</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="chap2.html">2. 硬件相关知识</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#hmi">HMI主要资源</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">手册资料</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">管脚复用情况</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap3.html">3. 搭建开发环境</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap4.html">4. U-Boot</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap5.html">5. Linux Kernel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap6.html">6. Rootfs根文件系统</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap7.html">7. 应用开发</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap8.html">8. 附录</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">合信HMI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li><li>2. 硬件相关知识</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">硬件相关知识</h1>
+<h2 id="hmi">HMI主要资源</h2>
+<hr />
+<p>主要拥有以下资源：</p>
+<ul>
+<li>板载一片容量为256MB 的DDR3 内存</li>
+<li>板载一片容量为256MB NAND Flash 闪存</li>
+<li>板载两个USB HOST</li>
+<li>板载一个GMAC千兆有线网口</li>
+<li>板载RGB565接口</li>
+<li>板载一个蜂鸣器</li>
+<li>板载一个LED灯输出</li>
+</ul>
+<h2 id="_2">手册资料</h2>
+<p>芯片手册：<a href="https://linux-sunxi.org/images/2/2a/Allwinner_A40i_Datasheet_V1.1_cleaned.pdf">Allwinner A40i Datasheet</a></p>
+<p>用户手册：<a href="https://linux-sunxi.org/images/1/19/Allwinner_A40i_User_Manual_V1.1_cleaned.pdf">Allwinner A40i User Manual</a></p>
+<p>原理图: <a href="">schematic</a></p>
+<h2 id="_3">管脚复用情况</h2>
+<hr />
+<table>
+<thead>
+<tr>
+<th align="center">硬件功能分组</th>
+<th align="center">引脚号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">GMAC</td>
+<td align="center">PA0, PA1, PA2, PA3, PA4, PA5, PA6, PA7, PA8,<br/>PA9, PA10, PA11, PA12, PA13, PA14, PA15, PA16, PA17</td>
+</tr>
+<tr>
+<td align="center">网络PHY复位引脚</td>
+<td align="center">PH22</td>
+</tr>
+<tr>
+<td align="center">NAND FLASH</td>
+<td align="center">PC0, PC1, PC2, PC3, PC4, PC5, PC6, PC7, PC8,<br> PC9, PC10, PC11, PC12, PC13, PC14, PC15, PC16</td>
+</tr>
+<tr>
+<td align="center">LCD-RGB</td>
+<td align="center">PD3, PD4, PD5, PD6, PD7, PD10, PD11, <br/>PD12, PD13, PD14, PD15, PD19, PD20, PD21,<br/> PD22, PD23, PD24, PD25, PD26, PD27</td>
+</tr>
+<tr>
+<td align="center">BACKLIGHT背光开关</td>
+<td align="center">PB9</td>
+</tr>
+<tr>
+<td align="center">蜂鸣器PWM</td>
+<td align="center">PB2</td>
+</tr>
+<tr>
+<td align="center">UART 0</td>
+<td align="center">PB22, PB23</td>
+</tr>
+<tr>
+<td align="center">UART 2</td>
+<td align="center">PI16, PI17, PI18, PI19</td>
+</tr>
+<tr>
+<td align="center">RS485 收发器使能开关</td>
+<td align="center">PB3</td>
+</tr>
+<tr>
+<td align="center">I2C 0</td>
+<td align="center">PB0, PB1</td>
+</tr>
+<tr>
+<td align="center">I2C 1</td>
+<td align="center">PB18, PB19</td>
+</tr>
+<tr>
+<td align="center">GREEN LED 绿灯</td>
+<td align="center">PG6</td>
+</tr>
+<tr>
+<td align="center">USB OTG VBUS 使能开关</td>
+<td align="center">PI13</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="chap1.html" class="btn btn-neutral float-left" title="1. 介绍"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="chap3.html" class="btn btn-neutral float-right" title="3. 搭建开发环境">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Co-Trust Inc</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="chap1.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="chap3.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

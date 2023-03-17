@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Hackintosh" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>1. 介绍 - 合信HMI</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "1. \u4ecb\u7ecd";
+        var mkdocs_page_input_path = "chap1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> 合信HMI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">主页</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="chap1.html">1. 介绍</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#11">1.1 芯片介绍</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#12-buildroot">1.2 Buildroot开发环境</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#121-buildroot">1.2.1 Buildroot 简介</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#122-buildroot">1.2.2 Buildroot 使用简介</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#1221-buildroot">1.2.2.1 Buildroot目录结构</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#1222">1.2.2.2 关于工具链</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#1223">1.2.2.3 常用命令</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap2.html">2. 硬件相关知识</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap3.html">3. 搭建开发环境</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap4.html">4. U-Boot</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap5.html">5. Linux Kernel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap6.html">6. Rootfs根文件系统</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap7.html">7. 应用开发</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap8.html">8. 附录</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">合信HMI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li><li>1. 介绍</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="1">1 介绍</h1>
+<p>合信HMI新平台硬件方面采用全志A40i作为主控芯片，软件采用Buildroot作为HMI固件的开发环境</p>
+<h2 id="11">1.1 芯片介绍</h2>
+<p><strong>全志工业级A40I</strong> (A40i/R40/V40/T3)</p>
+<ul>
+<li>四核Cortex-A7，主频最高为1.2GHz，集成 Mali400MP2 GPU；</li>
+<li>支持双屏同显异显和多种显示接口RGB/MIPI /双8位 LVDS /HDMI/TV OUT，1920x1080@60fps；</li>
+<li>支持1路千兆网络，1路百兆网络，支持WIFI/BT4.0，支持4G；</li>
+<li>支持多路摄像头输入，两路DVP摄像头接口，最高支持500W像素，四路TVIN，支持NTSC与 PAL制式</li>
+<li>CPU内部集成Audio Codec，支持1路差分PHONEOUT，1路立体声耳机输出 ,1路microphone输入</li>
+<li>外部扩展接口丰富UART <em>8、SD</em>4、USB<em>3、SPI</em>4、IIC<em>5、SATA、PWM</em>8等；</li>
+<li>支持Linux和Android操作系统；</li>
+</ul>
+<hr />
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>ARM Cortex-A7 Quad-Core <br/> 32 KB (Instruction) / 32 KiB (Data) L1-Cache per core <br/> 512 KB L2-Cache (shared between four cores)</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>ARM Mali400 MP2Featuring 1 vertex shader (GP) and 2 fragment shaders (PP)<br/>Complies with OpenGL ES 2.0</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>DDR2/DDR3/DDR3L/LPDDR2/LPDDR3 controller up to 2GB address space<br/>NAND Flash controller and 64-bit ECC</td>
+</tr>
+<tr>
+<td>Video</td>
+<td>Full HD 1080p video decoding of MPEG-2, MPEG-4 SP/ASP GMC, H.263, H.264, WMV9/VC-1, and VP8<br/>BD Directory, BD ISO and BD m2ts video decoding<br/>H.264 High Profile 1080p @ 45 fps encoding<br/>Complies with RTSP, HTTP,HLS,RTMP,MMS streaming media protocol</td>
+</tr>
+<tr>
+<td>Camera</td>
+<td>4-channel TVIN<br/>Dual-sensor support</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>Integrated HI-FI 100 dB Audio Codec<br/>Dual MIC noise cancellation</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>Supports output size up to 2048x2048<br/>CPU/RGB/LVDS LCD interface 1920x1080@60fps<br/>MIPI 4 lane DSI interface up to 1920x1080@60fps resolution<br/>TV out: 4-ch CVBS, 1-ch YPbPr and 1-ch VGA<br/>HDMI v1.4 with HDCP 1.2, up to 1920x1080@60fps</td>
+</tr>
+<tr>
+<td>Connectivity</td>
+<td>3 X USB 2.0 , 5 x TWI, 4 x SPI, 8 x UART RTP PS2 SDIO, IR,</td>
+</tr>
+<tr>
+<td>PMIC</td>
+<td>AXP221s</td>
+</tr>
+<tr>
+<td>OS</td>
+<td>Melis, Linux OS</td>
+</tr>
+<tr>
+<td>Package</td>
+<td>FBGA 468 balls,0.65mm ball pitch, 16x16 mm</td>
+</tr>
+<tr>
+<td>Process</td>
+<td>40nm</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="A40i_Block_Diagram.png" src="imgs/A40i_Block_Diagram.png" /></p>
+<p><img alt="A40i_Highlight" src="imgs/A40i_Highlight.png" /></p>
+<p><strong>参考链接</strong></p>
+<p><a href="https://www.allwinnertech.com/index.php?c=product&amp;id=69">全志官网A40i产品介绍</a></p>
+<p><a href="https://linux-sunxi.org/images/2/2a/Allwinner_A40i_Datasheet_V1.1_cleaned.pdf">Allwinner A40i Datasheet</a></p>
+<p><a href="https://linux-sunxi.org/images/1/19/Allwinner_A40i_User_Manual_V1.1_cleaned.pdf">Allwinner A40i User Manual</a></p>
+<h2 id="12-buildroot">1.2 Buildroot开发环境</h2>
+<h3 id="121-buildroot">1.2.1 Buildroot 简介</h3>
+<p>Buildroot 是一个简单高效、易于使用的可通过交叉编译来构建嵌入式 Linux 系统的工具。 它能够处理交叉编译工具链、根文件系统生成、内核镜像编译和引导加载程序编译等，还支持数千种软件包，例如 Gtk3、QT5、GStreamer、Webkit 以及大量与网络相关、系统相关的实用工具。Buildroot 采用类似于 linux 内核的 menuconfig、gconfig 和 xconfig 配置界面，因此使用 Buildroot 构建一个基本的系统是非常轻松的，这通常会花费 15-30 分钟。同时，Buildroot 是一个开源项目，开发者可以对它做出贡献，来让 Buildroot 变得更加完善。
+<br/>  </p>
+<p><img alt="buildroot官网" src="imgs/buildroot.jpg" />
+<br><center>buildroot 官方网站 </center><br/></p>
+<p><img alt="buildroot界面" src="imgs/buildroot-main.jpg" />
+<br><center>buildroot 主界面</center><br/></p>
+<h3 id="122-buildroot">1.2.2 Buildroot 使用简介</h3>
+<h4 id="1221-buildroot">1.2.2.1 Buildroot目录结构</h4>
+<pre><code class="language-bash">├── arch        //存放CPU架构相关的配置脚本，例如ARM，X86，MIPS等
+├── board       //存放开发板的板级配置参数
+├── boot        //存放Bootloader的自动构建脚本
+├── CHANGES
+├── Config.in
+├── Config.in.legacy
+├── configs
+├── COPYING
+├── DEVELOPERS
+├── dl          //存放下载的源代码以及应用软件的压缩包            
+├── docs        //存放相关的参考文档
+├── fs          //存放生成文件系统镜像的建构脚本
+├── linux       //存放Linux Kernel的自动构建脚本
+├── Makefile
+├── Makefile.legacy
+├── output      //存放编译生成输出的文件
+    ├── build   //存放源代码解压编译完成后的现场
+    ├── host    //存放制作好的编译工具链，例如GCC，交叉编译链工具等
+    ├── images  //存放Buildroot编译最终生成生成的Bootloader,zImage,rootfs 等镜像文件
+    ├── staging
+    └── target  //用来存放建构根文件的基本目录结构，放置交叉编译生成的ELF可执行文件和so动态库
+├── package     //存放第三方开元包的自动编译构建脚本
+├── README
+├── support
+├── system      //存放文件系统目录和设备节点的模板
+├── toolchain   //存放制作工具链的脚本
+└── utils
+</code></pre>
+<h4 id="1222">1.2.2.2 关于工具链</h4>
+<p>编译工具链是一组允许您为目标系统编译代码的工具。它由一个编译器(在我们环境下为 gcc)、二进制工具(比如汇编器和链接器，在我们环境下为 binutils)以及一个 C 标准库(如 G NU Libc、uClibc-ng)组成。
+安装在开发工作站上的系统肯定已有一个编译工具链，可用它来编译在系统上运行的应用程序。如果使用的是 PC，则该编译工具链可在 x86 处理器上运行，并为 x86 处理器生成代码。</p>
+<p>在大多数Linux系统中，编译工具链使用GNU libc(glibc)作为C标准库。这种编译工具链称
+为“宿主机编译工具链”。工具链在上面运行并且您在其上工作的计算机称为“宿主机系统” 。 编译工具链由您的发行版提供，而 Buildroot 与它无关(除了使用它来构建交叉编译工具链和在开发主机上运行的其他工具)。 如上所述，系统随附的编译工具链可在宿主机上运行并为宿主机系统中的处理器生成代码。</p>
+<p>由于嵌入式系统具有不同的处理器，因此需要交叉编译工具链-一种能在主机系统上 运行但为目标系统(和目标处理器)生成代码的编译工具链。例如，如果主机系统使用x86，而目标系统使用 ARM，则主机上的常规编译工具链是在 x86 上运行并为 x86 生成代码，而 交叉编译工具链是在 x86 上运行并为 ARM 生成代码。</p>
+<p>Buildroot 为交叉编译工具链提供两种解决方案:</p>
+<ul>
+<li>内部工具链后端，在配置界面中调用“Buildroot toolchain”。</li>
+<li>外部工具链后端，在配置界面中调用“External toolchain”。</li>
+</ul>
+<p>本次选择External toolchain</p>
+<p><img alt="buildroot-toolchain" src="imgs/buildroot-toolchain.jpg" /></p>
+<h4 id="1223">1.2.2.3 常用命令</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>make menuconfig</code></td>
+<td>打开交互式配置菜单</td>
+</tr>
+<tr>
+<td><code>make</code></td>
+<td>基于当前配置构建系统，包括交叉编译工具链、内核、文件系统、设备树等</td>
+</tr>
+<tr>
+<td><code>make clean</code></td>
+<td>清除构建过程中生成的所有临时文件，但保留配置文件</td>
+</tr>
+<tr>
+<td><code>make distclean</code></td>
+<td>清除构建过程中生成的所有临时文件及生成的配置文件</td>
+</tr>
+<tr>
+<td><code>make savedefconfig</code></td>
+<td>将当前配置保存为默认配置文件，可以用于后续使用</td>
+</tr>
+<tr>
+<td><code>make xxx_defconfig</code></td>
+<td>选择特定板子的默认配置</td>
+</tr>
+<tr>
+<td><code>make linux-menuconfig</code></td>
+<td>打开内核交互式配置菜单，允许用户选择内核编译选项、驱动程序等</td>
+</tr>
+<tr>
+<td><code>make linux-clean</code></td>
+<td>清除内核构建期间生成的临时文件和目标文件</td>
+</tr>
+<tr>
+<td><code>make linux-dirclean</code></td>
+<td>清除内核生成的所有文件和目标文件</td>
+</tr>
+<tr>
+<td><code>make busybox-menuconfig</code></td>
+<td>打开 Busybox 交互式配置菜单，允许用户选择 Busybox 包含的工具、选项等</td>
+</tr>
+<tr>
+<td><code>make busybox-clean</code></td>
+<td>清除 Busybox 构建过程中生成的临时文件和目标文件</td>
+</tr>
+<tr>
+<td><code>make busybox-dirclean</code></td>
+<td>清除 Busybox 生成的所有文件和目标文件</td>
+</tr>
+<tr>
+<td><code>make sdk</code></td>
+<td>创建 SDK 工具包，其中包含交叉编译工具链和 rootfs 文件系统等，可用于将应用程序交付给其他开发人员或客户</td>
+</tr>
+</tbody>
+</table>
+<p>make命令通常将执行以下步骤：</p>
+<ul>
+<li>下载源文件（根据需要）；</li>
+<li>配置、构建和安装交叉编译工具链，或仅导入外部工具链</li>
+<li>配置、构建和安装选定的目标软件包；</li>
+<li>构建内核映像（如果配置了该选项）</li>
+<li>构建引导加载程序映像（如果配置了该选项）</li>
+<li>以选定的格式创建一个根文件系统</li>
+</ul>
+<p>参考链接：</p>
+<p><a href="https://buildroot.org/">buildroot官网</a></p>
+<p><a href="https://buildroot.org/downloads/manual/manual.html">buildroot官方文档</a></p>
+<p><a href="attachments/Buildroot%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C%E4%B8%AD%E6%96%87%E7%89%88_V1.0.pdf">buildroot中文文档</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="index.html" class="btn btn-neutral float-left" title="主页"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="chap2.html" class="btn btn-neutral float-right" title="2. 硬件相关知识">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Co-Trust Inc</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="index.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="chap2.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

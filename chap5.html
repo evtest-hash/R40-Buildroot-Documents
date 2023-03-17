@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Hackintosh" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>5. Linux Kernel - 合信HMI</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "5. Linux Kernel";
+        var mkdocs_page_input_path = "chap5.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> 合信HMI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">主页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap1.html">1. 介绍</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap2.html">2. 硬件相关知识</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap3.html">3. 搭建开发环境</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap4.html">4. U-Boot</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="chap5.html">5. Linux Kernel</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#51-linux">5.1 Linux 简介</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#52-linux">5.2 Linux 目录结构</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#53-linux">5.3 linux 配置相关</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#55">5.5 参考资料</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap6.html">6. Rootfs根文件系统</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap7.html">7. 应用开发</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap8.html">8. 附录</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">合信HMI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li><li>5. Linux Kernel</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="linux-kernel">Linux Kernel</h1>
+<h2 id="51-linux">5.1 Linux 简介</h2>
+<p>Linux是一种自由和开放源码的类UNIX操作系统。该操作系统的内核由林纳斯·托瓦兹在1991年10月5日首次发布，在加上用户空间的应用程序之后，成为Linux操作系统。</p>
+<p>Linux也是自由软件和开放源代码软件发展中最著名的例子。只要遵循GNU 通用公共许可证（GPL），任何个人和机构都可以自由地使用Linux的所有底层源代码，也可以自由地修改和再发布。大多数Linux系统还包括像提供GUI的X Window之类的程序。除了一部分专家之外，大多数人都是直接使用Linux 发行版，而不是自己选择每一样组件或自行设置.</p>
+<p>Linux最初是作为支持英特尔x86架构的个人电脑的一个自由操作系统。目前Linux已经被移植到更多的计算机硬件平台，远远超出其他任何操作系统。Linux可以运行在服务器和其他大型平台之上，如大型计算机和超级计算机。世界上500个最快的超级计算机已100％运行Linux发行版或变种。Linux也广泛应用在嵌入式系统上，如手机（Mobile Phone）、平板电脑（Tablet）、路由器（Router）、电视（TV）和电子游戏机等。在移动设备上广泛使用的Android操作系统就是创建在Linux内核之上。</p>
+<h2 id="52-linux">5.2 Linux 目录结构</h2>
+<table>
+<thead>
+<tr>
+<th align="center">目录</th>
+<th align="center">描述</th>
+<th align="center">存放功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">arch</td>
+<td align="center">即architecture,意为架构的意思, 常见的一些架构有mips、x86、arm。 适配一款芯片的linux内核，首先需要知道芯片属于什么架构</td>
+<td align="center">dts、内存管理，系统调用，动态调频，主频率设置、库文件等</td>
+</tr>
+<tr>
+<td align="center">block</td>
+<td align="center">block，意为块，与块设备相关的功能，如SD卡、iNand、Nand、硬盘等块设备相关的操作</td>
+<td align="center">块设备相关代码</td>
+</tr>
+<tr>
+<td align="center">crypto</td>
+<td align="center">encryption，与加密相关的功能，如md5、sha1、 hash等</td>
+<td align="center">各类加密算法相关的功能代码</td>
+</tr>
+<tr>
+<td align="center">Documentation</td>
+<td align="center">linux内核各类机制相关的文档，全英文，可以查阅各类机制的实现说明</td>
+<td align="center">官方文档</td>
+</tr>
+<tr>
+<td align="center">drivers</td>
+<td align="center">驱动，linux的驱动代码， 如GPIO、网络、usb、蓝牙等驱动源码，一般做开发都需要修改或添加该目录下的文件</td>
+<td align="center">驱动源码相关</td>
+</tr>
+<tr>
+<td align="center">frimware</td>
+<td align="center">存放一些固件代码(.bin)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">fs</td>
+<td align="center">即files system，文件系统， 如ext2-4、jffs2、nfs、squashfs、ramfs、romfs等文件系统的实现代码</td>
+<td align="center">文件系统相关源码</td>
+</tr>
+<tr>
+<td align="center">include</td>
+<td align="center">linux库文件的头文件，如fs.h、mdio.h、mm.h等， include/linux存放与平台无关的功能的头文件</td>
+<td align="center">linux内核功能相关的头文件</td>
+</tr>
+<tr>
+<td align="center">init</td>
+<td align="center">initialization ，初始化相关源码，main.c也在其中</td>
+<td align="center">linux初始化相关</td>
+</tr>
+<tr>
+<td align="center">ipc</td>
+<td align="center">Inter-Process Communication，进程间通信， 如共享内存、信号量、消息队列等</td>
+<td align="center">进程间通信相关代码</td>
+</tr>
+<tr>
+<td align="center">kernel</td>
+<td align="center">内核，linux内核相关的功能实现源码，如panic、pid、module、irq、cpu相关</td>
+<td align="center">内核功能源码</td>
+</tr>
+<tr>
+<td align="center">lib</td>
+<td align="center">library， 实现一些库功能，如decompress、crc32、atomic等</td>
+<td align="center">库功能实现源码</td>
+</tr>
+<tr>
+<td align="center">mm</td>
+<td align="center">memory management，内存管理相关功能实现 ，mmap、page、mempool等</td>
+<td align="center">内存管理相关源码</td>
+</tr>
+<tr>
+<td align="center">netnetwork</td>
+<td align="center">网络功能相关的源码，如tcp/ip、dns、ipv4/v6、802.11、ethernet等</td>
+<td align="center">网络协议功能</td>
+</tr>
+<tr>
+<td align="center">samples</td>
+<td align="center">一些linux功能代码使用的标准实例</td>
+<td align="center">示例参考代码</td>
+</tr>
+<tr>
+<td align="center">scripts</td>
+<td align="center">与内核无关的脚本代码，如内核编译相关、menuconfig相关</td>
+<td align="center">内核无关的脚本</td>
+</tr>
+<tr>
+<td align="center">security</td>
+<td align="center">SELinux的模块。安全相关</td>
+<td align="center">安全相关代码，具体未知</td>
+</tr>
+<tr>
+<td align="center">sound</td>
+<td align="center">声卡与声音驱动相关代码，包含i2c、spi、usb等接口</td>
+<td align="center">音频功能实现代码</td>
+</tr>
+<tr>
+<td align="center">tools</td>
+<td align="center">与c编译、链接生成一个完整内核镜像相关的工具</td>
+<td align="center">编译相关</td>
+</tr>
+<tr>
+<td align="center">virt</td>
+<td align="center">虚拟化相关的代码，允许搭建虚拟机环境，运行多个系统</td>
+<td align="center">虚拟化相关代码实现</td>
+</tr>
+</tbody>
+</table>
+<h2 id="53-linux">5.3 linux 配置相关</h2>
+<p>在Buildroot根目录下输入</p>
+<pre><code class="language-bash">make linux-menuconfig
+</code></pre>
+<p><img alt="linux-menuconfig" src="imgs/linux-menuconfig.jpg" />
+<center>linux 配置界面</center></p>
+<h2 id="55">5.5 参考资料</h2>
+<p><a href="https://docs.kernel.org/">linux document</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="chap4.html" class="btn btn-neutral float-left" title="4. U-Boot"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="chap6.html" class="btn btn-neutral float-right" title="6. Rootfs根文件系统">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Co-Trust Inc</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="chap4.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="chap6.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

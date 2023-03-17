@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Hackintosh" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>7. 应用开发 - 合信HMI</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "7. \u5e94\u7528\u5f00\u53d1";
+        var mkdocs_page_input_path = "chap7.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> 合信HMI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">主页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap1.html">1. 介绍</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap2.html">2. 硬件相关知识</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap3.html">3. 搭建开发环境</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap4.html">4. U-Boot</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap5.html">5. Linux Kernel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap6.html">6. Rootfs根文件系统</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="chap7.html">7. 应用开发</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#71-qt5">7.1 QT5 开发</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#711-qt-creator">7.1.1 安装QT CREATOR</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#712-arm-qt-creator-kits">7.1.2 配置ARM 平台的Qt Creator Kits</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#713-arm-qt">7.1.3 验证ARM 平台的Qt 编译</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#72">7.2 应用打包</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#721-deb">7.2.1 deb包的目录结构</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#722-deb">7.2.2 制作deb包流程</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#723-dpkg">7.2.3 dpkg 常用命令</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap8.html">8. 附录</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">合信HMI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li><li>7. 应用开发</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="7">7 应用开发</h1>
+<h2 id="71-qt5">7.1 QT5 开发</h2>
+<h3 id="711-qt-creator">7.1.1 安装QT CREATOR</h3>
+<p>本次安装的QT CREATOR 为apt源上的</p>
+<pre><code class="language-bash">sudo apt-get install qtcreator
+</code></pre>
+<h3 id="712-arm-qt-creator-kits">7.1.2 配置ARM 平台的Qt Creator Kits</h3>
+<p><strong>安装成功后打开QT CREATOR, 打开Qt Creator 界面，找到Tools   （工具）》Options   （选项)</strong></p>
+<p><strong><center><img alt="QTCREATOR_OPTION" src="imgs/QtCreator_options.jpg" /></center></strong></p>
+<p><strong>切换到Qt Versions， 添加qmake</strong>
+<strong><center><img alt="QTCREATOR_QMAKE" src="imgs/ARM-QMAKE.jpg" /></center></strong></p>
+<p><strong>切换到Compilers,添加交叉编译工具</strong></p>
+<p><strong><center><img alt="QTCREATOR_GCC" src="imgs/QtCreator_Add_GCC.jpg" /></center></strong></p>
+<p><strong><center><img alt="QTCREATOR_GCC" src="imgs/ARM_GCC.jpg" /></center></strong></p>
+<p><strong><center><img alt="QTCREATOR_GCC" src="imgs/QtCreator_Add_G%2B%2B.jpg" /></center></strong></p>
+<p><strong><center><img alt="QTCREATOR_GCC" src="imgs/ARM_G%2B%2B.jpg" /></center></strong></p>
+<p><strong>切换到Debuggers,添加调试工具</strong>
+<strong><center><img alt="QTCREATOR_GDB" src="imgs/ARM_GDB.jpg" /></center></strong></p>
+<p><strong>最后切换到Kits，添加如下指出的选项，即可完成ARM 平台的Qt Creator Kits配置</strong>
+<strong><center><img alt="QTCREATOR_KIT" src="imgs/ARM_KIT.jpg" /></center></strong></p>
+<h3 id="713-arm-qt">7.1.3 验证ARM 平台的Qt 编译</h3>
+<p><strong>打开QT源码中自带的examples文件夹中的examples.pro 项目文件</strong>
+<strong><center><img alt="QTCREATOR_OPEN_PROJECT" src="imgs/QTCREATOR_OPEN_PROJECT.jpg" /></center></strong></p>
+<p><strong>选择之前添加的ARM Kit</strong>
+<strong><center><img alt="PROJECT_CHOOSE_KIT" src="imgs/PROJECT_CHOOSE_KIT.jpg" /></center></strong></p>
+<p><strong>进入工程界面后点击build all 即可编译工程并生成 ARM LINUX 平台的 ELF 可执行文件</strong>
+<strong><center><img alt="QTCREATOR_BUILD" src="imgs/QTCREATOR_BUILD.png" /></center></strong></p>
+<h2 id="72">7.2 应用打包</h2>
+<p>dpkg 是"Debian Packager "的简写。为 "Debian" 专门开发的套件管理系统，方便软件的安装、更新及移除。所有源自"Debian"的"Linux "发行版都使用 "dpkg"，例如 "Ubuntu"、"Knoppix "等。</p>
+<p>dpkg是Debian软件包管理器的基础，它被伊恩·默多克创建于1993年。dpkg与RPM十分相似，同样被用于安装、卸载和供给.deb软件包相关的信息。</p>
+<p>dpkg本身是一个底层的工具。上层的工具，如APT，被用于从远程获取软件包以及处理复杂的软件包关系。 "dpkg"是"Debian Package"的简写。</p>
+<h3 id="721-deb">7.2.1 deb包的目录结构</h3>
+<p>deb包本身有三部分组成</p>
+<table>
+<thead>
+<tr>
+<th align="center">组成</th>
+<th align="center">详细</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">数据包</td>
+<td align="center">包含实际安装的程序数据，文件名为“data.tar.XXX”</td>
+</tr>
+<tr>
+<td align="center">安装信息及控制包</td>
+<td align="center">包含deb的安装说明，标识，脚本等，文件名为“control.tar.gz”</td>
+</tr>
+<tr>
+<td align="center">二进制数据</td>
+<td align="center">包含文件头等信息，需要特殊软件才能查看</td>
+</tr>
+</tbody>
+</table>
+<p>deb包的目录结构如下所示</p>
+<pre><code class="language-bash">|----DEBIAN
+
+       |-------control
+
+       |-------postinst(postinstallation)
+
+       |-------postrm(postremove)
+
+       |-------preinst(preinstallation)
+
+       |-------prerm(preremove)
+
+       |-------copyright(版权)
+
+       |-------changlog(修订记录)
+
+       |-------conffiles
+
+|----usr
+
+|----...
+
+</code></pre>
+<p>control文件</p>
+<p>主要描述软件包的名称（Package），版本（Version），Installed-Size（大小），Maintainer（打包人和联系方式）以及描述（Description）等，是deb包必须具备的描述性文件，以便于软件的安装管理和索引。</p>
+<table>
+<thead>
+<tr>
+<th align="center">字段</th>
+<th align="center">用途</th>
+<th align="center">例子/其他</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Package</td>
+<td align="center">程序名称</td>
+<td align="center">中间不能有空格</td>
+</tr>
+<tr>
+<td align="center">Version</td>
+<td align="center">软件版本</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Description</td>
+<td align="center">程序说明</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Section</td>
+<td align="center">软件类别</td>
+<td align="center">utils, net, mail, text, x11</td>
+</tr>
+<tr>
+<td align="center">Priority</td>
+<td align="center">软件对于系统的重要程度</td>
+<td align="center">required, standard, optional, extra等；</td>
+</tr>
+<tr>
+<td align="center">Essential</td>
+<td align="center">是否是系统最基本的软件包</td>
+<td align="center">yes/no，若为yes,则不允许卸载（除非强制性卸载）</td>
+</tr>
+<tr>
+<td align="center">Architecture</td>
+<td align="center">软件所支持的平台架构</td>
+<td align="center">i386, amd64, m68k, sparc, alpha, powerpc等</td>
+</tr>
+<tr>
+<td align="center">Source</td>
+<td align="center">软件包的源代码名称</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Depends</td>
+<td align="center">软件所依赖的其他软件包和库文件</td>
+<td align="center">若依赖多个软件包和库文件，采用逗号隔开</td>
+</tr>
+<tr>
+<td align="center">Pre-Depends</td>
+<td align="center">软件安装前必须安装、配置依赖性的软件包和库文件</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Recommends</td>
+<td align="center">推荐安装的其他软件包和库文件</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Suggests</td>
+<td align="center">建议安装的其他软件包和库文件</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>preinst文件</p>
+<p>在Deb包文件解包之前（即软件安装前），将会运行该脚本。可以停止作用于待升级软件包的服务，直到软件包安装或升级完成。</p>
+<p>postinst文件</p>
+<p>负责完成安装包时的配置工作。如新安装或升级的软件重启服务。软件安装完后，执行该Shell脚本，一般用来配置软件执行环境，必须以“#!/bin/sh”为首行。</p>
+<p>prerm 文件</p>
+<p>该脚本负责停止与软件包相关联的daemon服务。它在删除软件包关联文件之前执行。</p>
+<p>postrm文件</p>
+<p>负责修改软件包链接或文件关联，或删除由它创建的文件。软件卸载后，执行该Shell脚本，一般作为清理收尾工作，必须以“#!/bin/sh”为首行</p>
+<h3 id="722-deb">7.2.2 制作deb包流程</h3>
+<p>新建文件夹，假设名字为mydeb
+在mydeb内新建一个DEBIAN文件夹，此文件夹内存放控制信息
+在DEBIAN里新建一个文本文档, 名为control, 编码为utf-8, 内容如下所示：</p>
+<pre><code class="language-bash">Package: MagicWork
+Version: 4.0.0
+Architecture: arm
+Section: utils
+Priority: optional
+Maintainer: Co-Trust
+Homepage: http://www.co-trust.com.
+</code></pre>
+<p>注意版本号Version需要根据软件更新升级做修改</p>
+<p>然后我们创建对应的二进制包安装完成后的路径信息放置在DEBIAN的同级目录下，也就是把当前的目录当成根(“/”)目录,制作完成后安装时，当前目录下除了DEBIAN目录的其他目录都会被默认安装到系统的“/”目录下。</p>
+<pre><code class="language-bash">.
+├── DEBIAN
+│   └── control
+└── usr
+    ├── bin
+    │   ├── MagicWork
+    │   └── NightWatchMan
+    └── lib
+        ├── libHMIDevice.so -&gt; libHMIDevice.so.1.0.0
+        ├── libHMIDevice.so.1 -&gt; libHMIDevice.so.1.0.0
+        ├── libHMIDevice.so.1.0 -&gt; libHMIDevice.so.1.0.0
+        ├── libHMIDevice.so.1.0.0
+        ├── libHMIService.so -&gt; libHMIService.so.1.0.0
+        ├── libHMIService.so.1 -&gt; libHMIService.so.1.0.0
+        ├── libHMIService.so.1.0 -&gt; libHMIService.so.1.0.0
+        ├── libHMIService.so.1.0.0
+        ├── libkwmf.a
+        ├── libprinter.so -&gt; libprinter.so.1.0.0
+        ├── libprinter.so.1 -&gt; libprinter.so.1.0.0
+        ├── libprinter.so.1.0 -&gt; libprinter.so.1.0.0
+        ├── libprinter.so.1.0.0
+        ├── libWindingMachineModule.so -&gt; libWindingMachineModule.so.1.0.0
+        ├── libWindingMachineModule.so.1 -&gt; libWindingMachineModule.so.1.0.0
+        ├── libWindingMachineModule.so.1.0 -&gt; libWindingMachineModule.so.1.0.0
+        └── libWindingMachineModule.so.1.0.0
+
+</code></pre>
+<p>当放置文件完成后，使用dpkg进行打包生成deb格式的安装包</p>
+<pre><code class="language-bash">dpkg -b mydeb/  MagicWork.deb
+</code></pre>
+<h3 id="723-dpkg">7.2.3 dpkg 常用命令</h3>
+<ul>
+<li>打包 dpkg -b  . xxx 第一个参数为将要打包的目录名（.表示当前目录），第二个参数为生成包的名称</li>
+</ul>
+<pre><code class="language-bash">dpkg -b . xxx.deb
+</code></pre>
+<ul>
+<li>安装（解包并配置） dpkg -i|--install &lt;.deb file name&gt;</li>
+</ul>
+<pre><code class="language-bash">dpkg -i xxx.deb
+</code></pre>
+<ul>
+<li>卸载 dpkg -r|--remove  ，删除包，但保留配置文件</li>
+</ul>
+<pre><code class="language-bash">dpkg -r xxx
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="chap6.html" class="btn btn-neutral float-left" title="6. Rootfs根文件系统"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="chap8.html" class="btn btn-neutral float-right" title="8. 附录">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Co-Trust Inc</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="chap6.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="chap8.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

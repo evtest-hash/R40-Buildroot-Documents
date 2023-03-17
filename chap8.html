@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Hackintosh" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>8. 附录 - 合信HMI</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "8. \u9644\u5f55";
+        var mkdocs_page_input_path = "chap8.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> 合信HMI
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">主页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap1.html">1. 介绍</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap2.html">2. 硬件相关知识</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap3.html">3. 搭建开发环境</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap4.html">4. U-Boot</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap5.html">5. Linux Kernel</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap6.html">6. Rootfs根文件系统</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chap7.html">7. 应用开发</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="chap8.html">8. 附录</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#81-a40i">8.1 A40i 芯片的上电启动顺序</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#82-usb-fel">8.2 全志 USB FEL 模式</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#83">8.3 烧录</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">合信HMI</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li><li>8. 附录</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">附录</h1>
+<h2 id="81-a40i">8.1 A40i 芯片的上电启动顺序</h2>
+<p><strong>A40i芯片支持通过 NAND Flash, eMMC,SPI NOR Flash (SPI0), SD card ,USB 介质启动</strong></p>
+<blockquote>
+<p>After power on, the system will try to boot from SDC0, SPI0, eMMC2, SDC2, NAND Flash and USB successively, but if the Boot Select Pin, an external pin that is used to select system boot method, is checked to be in low level state, the system will direclty boot from USB. In normal state, this pin is pulled up by an internal 50kohm resistor</p>
+</blockquote>
+<p><strong>当A40i芯片上电后，如果检测到FEL引脚为低电平，则芯片直接跳转到USB FEL模式，等待数据通过USB OTG传输；当FEL引脚没有被拉低时，BROM会尝试从SDC0, SPI0, eMMC2, SDC2, NAND Flash，USB读取数据，并且判断读取的数据是否满足为合法启动数据，如果为合法启动数据，则结束引导，将系统控制权转交给bootloader。</strong></p>
+<p><img alt="System Boot Diagram" src="imgs/System_Boot_Diagram.png" /></p>
+<p><strong>参考：</strong></p>
+<p><a href="https://linux-sunxi.org/BROM">BROM搜索启动介质顺序</a></p>
+<h2 id="82-usb-fel">8.2 全志 USB FEL 模式</h2>
+<blockquote>
+<p>FEL is a low-level subroutine contained in the BootROM on Allwinner devices. It is used for initial programming and recovery of devices using USB.</p>
+</blockquote>
+<p>全志的FEL模式是烧录固件和解决设备启动问题的一种特殊模式。FEL是烧录工具PhoenixSuit使用的一种协议，完整名称为Full-Featured Embedded Loader。 FEL模式可以通过USB接口进入，从而使用烧录工具来烧录或修复设备上的固件。FEL 固化在全志BROM之中的通信协议，用于对全志芯片进行初始化和恢复。此时芯片作为DEVICE设备端，通过USB OTG 和HOST端通过USB FEL协议进行通信</p>
+<p>在FEL模式下，设备处于一个低级别状态，其中只有基本驱动程序处于活动状态，以便通过USB接口与计算机通信。通过这种方式，烧录工具可以与设备进行数据交换，并向设备烧录新的固件。FEL模式通常用于修复设备启动问题，例如穿越刷机错误、固件损坏等。在进入FEL模式后，用户可以使用烧录工具执行修复操作以恢复设备正常的操作系统和功能。</p>
+<p>总之，全志的FEL模式是一种非常有用的工具，可用于烧录和修复设备的固件，特别是在设备无法正常启动时使用。</p>
+<p>在HOST端主要通过<code>sunxi-tools</code>工具集来进行与全志芯片的通信,有读取芯片信息，执行命令，读写内存等功能。</p>
+<pre><code class="language-bash"># sunxi-fel --help
+sunxi-fel v1.4.1-104-g11a9d20
+
+Usage: sunxi-fel [options] command arguments... [command...]
+ -h, --help   Print this usage summary and exit
+ -v, --verbose   Verbose logging
+ -p, --progress   &quot;write&quot; transfers show a progress bar
+ -l, --list   Enumerate all (USB) FEL devices and exit
+ -d, --dev bus:devnum  Use specific USB bus and device number
+     --sid SID   Select device by SID key (exact match)
+
+ spl file   Load and execute U-Boot SPL
+  If file additionally contains a main U-Boot binary
+  (u-boot-sunxi-with-spl.bin), this command also transfers that
+  to memory (default address from image), but won't execute it.
+
+ uboot file-with-spl  like &quot;spl&quot;, but actually starts U-Boot
+  U-Boot execution will take place when the fel utility exits.
+  This allows combining &quot;uboot&quot; with further &quot;write&quot; commands
+  (to transfer other files needed for the boot).
+
+ hex[dump] address length Dumps memory region in hex
+ dump address length  Binary memory dump
+ exe[cute] address  Call function address
+ reset64 address   RMR request for AArch64 warm boot
+ memmove dest source size Copy &lt;size&gt; bytes within device memory
+ readl address   Read 32-bit value from device memory
+ writel address value  Write 32-bit value to device memory
+ read address length file Write memory contents into file
+ write address file  Store file contents into memory
+ write-with-progress addr file &quot;write&quot; with progress bar
+ write-with-gauge addr file Output progress for &quot;dialog --gauge&quot;
+ write-with-xgauge addr file Extended gauge output (updates prompt)
+ multi[write] # addr file ... &quot;write-with-progress&quot; multiple files,
+     sharing a common progress status
+ multi[write]-with-gauge ... like their &quot;write-with-*&quot; counterpart,
+ multi[write]-with-xgauge ...   but following the 'multi' syntax:
+       &lt;#&gt; addr file [addr file [...]]
+ echo-gauge &quot;some text&quot;  Update prompt/caption for gauge output
+ ver[sion]   Show BROM version
+ sid    Retrieve and output 128-bit SID key
+ clear address length  Clear memory
+ fill address length value Fill memory
+
+ spiflash-info   Retrieves basic information
+ spiflash-read addr length file Write SPI flash contents into file
+ spiflash-write addr file Store file contents into SPI flash
+
+</code></pre>
+<p><strong>参考：</strong></p>
+<p><a href="https://blog.csdn.net/lp8800/article/details/119877808">全志sunxi-tools介绍</a></p>
+<p><a href="https://linux-sunxi.org/FEL">USB FEL 模式</a></p>
+<h2 id="83">8.3 烧录</h2>
+<p>烧录前将HMI进入烧录模式，具体步骤为短接FEL引脚，然后上电即可进入烧录模式（即USB FEL模式）</p>
+<p><img alt="FEL_LOAD" src="imgs/FEL_LOAD.jpg" /></p>
+<p>在Ubuntu或其他Linux发行版情况下可以通过libusb库直接连接设备。
+在Windows上需要Zadig安装WinUSB驱动来实现。</p>
+<p><img alt="libusb" src="imgs/libusb.png" /></p>
+<p>如果是Linux虚拟机，则需要将USB设备挂载到虚拟机下
+<img alt="ubuntu-fel" src="imgs/ubuntu-fel.png" /></p>
+<p>在Linux 上输入lsusb可以看到以下提示</p>
+<pre><code class="language-bash">➜  ~ lsusb
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 004: ID 1f3a:efe8 Onda (unverified) V972 tablet in flashing mode
+Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+</code></pre>
+<p>1f3a:efe8 即为处于烧录模式的HMI设备</p>
+<p>在 Linux 环境下执行以下选项，这样烧录FEL设备不需要 sudo 权限即可运行</p>
+<pre><code class="language-bash">sudo touch /etc/udev/rules.d/99-allwinner.rules
+echo 'SUBSYSTEM==&quot;usb&quot;, ATTRS{idVendor}==&quot;1f3a&quot;, ATTRS{idProduct}==&quot;efe8&quot;, GROUP=&quot;plugdev&quot;, MODE=&quot;0660&quot; SYMLINK+=&quot;usb-chip&quot;
+SUBSYSTEM==&quot;usb&quot;, ATTRS{idVendor}==&quot;18d1&quot;, ATTRS{idProduct}==&quot;1010&quot;, GROUP=&quot;plugdev&quot;, MODE=&quot;0660&quot; SYMLINK+=&quot;usb-chip-fastboot&quot;
+SUBSYSTEM==&quot;usb&quot;, ATTRS{idVendor}==&quot;18d1&quot;, ATTRS{idProduct}==&quot;4d00&quot;, GROUP=&quot;plugdev&quot;, MODE=&quot;0660&quot; SYMLINK+=&quot;usb-chip-fastboot&quot;
+SUBSYSTEM==&quot;usb&quot;, ATTRS{idVendor}==&quot;1f3a&quot;, ATTRS{idProduct}==&quot;1010&quot;, GROUP=&quot;plugdev&quot;, MODE=&quot;0660&quot; SYMLINK+=&quot;usb-chip-fastboot&quot;
+SUBSYSTEM==&quot;usb&quot;, ATTRS{idVendor}==&quot;067b&quot;, ATTRS{idProduct}==&quot;2303&quot;, GROUP=&quot;plugdev&quot;, MODE=&quot;0660&quot; SYMLINK+=&quot;usb-serial-adapter&quot;' | sudo tee /etc/udev/rules.d/99-allwinner.rules
+sudo udevadm control --reload-rules
+</code></pre>
+<p>在Buildroot执行make后，会在output/images目录生成image.zip,解压image.zip 后可以看到该压缩包里面有以下文件</p>
+<pre><code class="language-bash">.
+├── rootfs.ubi                      //根文件系统镜像
+├── sun8i-a40i-cotrust-g101.dtb     //设备树文件
+├── sunxi-spl-with-ecc.bin          //bootloader spl
+├── u-boot-dtb.img                  //bootloader
+├── u-boot-fastboot.bin             //带有fastboot 用于烧录的uboot固件
+└── zImage                          //linux kernel文件
+
+</code></pre>
+<p>如果要烧录固件，可以执行以下命令</p>
+<pre><code class="language-bash">sudo sunxi-fel uboot        u-boot-fastboot.bin;
+fastboot flash spl          sunxi-spl-with-ecc.bin;
+fastboot flash bootloader   u-boot-dtb.img;
+fastboot flash kernel       zImage;
+fastboot flash dtb          *.dtb;
+fastboot flash filesystem   rootfs.ubi;
+fastboot reboot
+</code></pre>
+<p>分区大小和各分区的作用可以参考第四章 U-Boot 第四节 U-Boot分区</p>
+<p>参考链接</p>
+<p><a href="https://android.googlesource.com/platform/system/core/+/master/fastboot/">fastboot官方文档</a></p>
+<p><a href="https://wowothink.com/5ade33b8/">fastboot原理解析</a></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="chap7.html" class="btn btn-neutral float-left" title="7. 应用开发"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+      <p>Co-Trust Inc</p>
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="chap7.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
